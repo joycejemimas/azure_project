@@ -19,8 +19,9 @@
             const formData = new FormData();
             formData.append('file', fileInput.files[0]);
 
-            const blobUrl = 'https://jjlearning.blob.core.windows.net/mycontainer/' + fileInput.files[0].name + '?sp=racwd&st=2024-12-28T16:36:26Z&se=2024-12-31T00:36:26Z&spr=https&sv=2022-11-02&sr=c&sig=ESVh0BWbCG%2BkDP1no1AqFCcJyzkuRTr8myy1El4IZRg%3D';
-
+            // Blob URL with the SAS token
+            const blobUrl = `https://jjlearning.blob.core.windows.net/mycontainer?sp=r&st=2024-12-28T17:45:04Z&se=2024-12-31T01:45:04Z&spr=https&sv=2022-11-02&sr=c&sig=nsNCtYW%2FLQHrYG291rTagbwp8lbAMPHATmbZigM6d9I%3D`;
+            // Send the PUT request to upload the file
             const response = await fetch(blobUrl, {
                 method: 'PUT',
                 headers: {
