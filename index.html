@@ -18,16 +18,21 @@
             const fileInput = document.getElementById('imageUpload');
             const formData = new FormData();
             formData.append('file', fileInput.files[0]);
-            
-            const response = await fetch('https://jjlearning.blob.core.windows.net/mycontainer?sp=r&st=2024-12-28T16:36:26Z&se=2024-12-31T00:36:26Z&spr=https&sv=2022-11-02&sr=c&sig=ESVh0BWbCG%2BkDP1no1AqFCcJyzkuRTr8myy1El4IZRg%3D', {
-                method: 'POST',
-                body: formData,
+
+            const blobUrl = 'https://jjlearning.blob.core.windows.net/mycontainer/' + fileInput.files[0].name + '?sp=racwd&st=2024-12-28T16:36:26Z&se=2024-12-31T00:36:26Z&spr=https&sv=2022-11-02&sr=c&sig=ESVh0BWbCG%2BkDP1no1AqFCcJyzkuRTr8myy1El4IZRg%3D';
+
+            const response = await fetch(blobUrl, {
+                method: 'PUT',
+                headers: {
+                    'x-ms-blob-type': 'BlockBlob'
+                },
+                body: fileInput.files[0],
             });
-            
+
             if (response.ok) {
                 document.getElementById('result').textContent = 'Upload successful!';
             } else {
-                document.getElementById('result').textContent = 'Upload failed.';
+                document.getElementById('result').textContent = 'Upload failed: ' + response.statusText;
             }
         };
     </script>
