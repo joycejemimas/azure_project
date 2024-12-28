@@ -6,7 +6,7 @@ import logging
 app = func.FunctionApp()
 
 
-@app.blob_trigger(arg_name="myblob", path="mycontainer/",
+@app.blob_trigger(arg_name="myblob", path="mycontainer/{myblob.name}",
                                connection="AzureWebJobsStorage") 
 def ResizeImageFunction(myblob: func.InputStream):
     logging.info(f"Python blob trigger function processed blob"
