@@ -20,7 +20,7 @@
             const fileName = fileInput.files[0].name;
             
             // Construct the blob URL with the SAS token
-            const blobUrl = `https://jjlearning.blob.core.windows.net/mycontainer/${fileName}?sv=2022-11-02&ss=bfqt&srt=co&sp=rwdlacupiytfx&se=2024-12-31T01:56:41Z&st=2024-12-28T17:56:41Z&spr=https&sig=BwQchu99EDTSov871CKLI4O0unX6KpNApVmzyy04VXs%3D`;
+            const blobUrl = `https://jjlearning.blob.core.windows.net/mycontainer/${fileName}?sp=rw&st=2024-12-28T18:24:37Z&se=2024-12-31T02:24:37Z&spr=https&sv=2022-11-02&sr=c&sig=pjr3Bwz%2BELEnN2ReLCtl%2FqZqyzLuw3ZPszSbPRPYkuI%3D`;
 
             // Send the PUT request to upload the file
             const response = await fetch(blobUrl, {
