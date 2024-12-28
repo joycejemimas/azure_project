@@ -17,11 +17,11 @@
             event.preventDefault();
             const fileInput = document.getElementById('imageUpload');
             const formData = new FormData();
-            formData.append('file', fileInput.files[0]);
-
-            // Blob URL with the SAS token
-            const blobUrl = `https://jjlearning.blob.core.windows.net/?sv=2022-11-02&ss=bfqt&srt=co&sp=rwdlacupiytfx&se=2024-12-31T01:56:41Z&st=2024-12-28T17:56:41Z&spr=https&sig=BwQchu99EDTSov871CKLI4O0unX6KpNApVmzyy04VXs%3D`;
+            const fileName = fileInput.files[0].name;
             
+            // Construct the blob URL with the SAS token
+            const blobUrl = `https://jjlearning.blob.core.windows.net/mycontainer/${fileName}?sv=2022-11-02&ss=bfqt&srt=co&sp=rwdlacupiytfx&se=2024-12-31T01:56:41Z&st=2024-12-28T17:56:41Z&spr=https&sig=BwQchu99EDTSov871CKLI4O0unX6KpNApVmzyy04VXs%3D`;
+
             // Send the PUT request to upload the file
             const response = await fetch(blobUrl, {
                 method: 'PUT',
@@ -34,7 +34,7 @@
             if (response.ok) {
                 document.getElementById('result').textContent = 'Upload successful!';
             } else {
-                document.getElementById('result').textContent = 'Upload failed: ' + response.statusText;
+                document.getElementById('result').textContent = `Upload failed: ${response.statusText}`;
             }
         };
     </script>
